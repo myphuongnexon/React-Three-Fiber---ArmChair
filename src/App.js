@@ -1,6 +1,6 @@
 import React, {Suspense, useRef} from "react";
 import { Canvas, useFrame } from "react-three-fiber";
-import { Html, useGLTFLoader } from "drei";
+import { useGLTFLoader, OrbitControls, Stars } from "drei";
 import "./App.scss";
 //Components
 import Header from "./components/header";
@@ -21,7 +21,7 @@ const Lights = () => {
      <spotLight intensity={1} position={[1000, 0, 0]}/>
     </>
   );
-}
+} 
 
 const HTMLContent = () => {
   const ref = useRef();
@@ -33,13 +33,6 @@ const HTMLContent = () => {
       <mesh position={[0,-35,0]} ref={ref}>
         <Model />
       </mesh>
-      {/* <Html fullscreen>
-            <div className='container'>
-              <div className='title'>
-                <h1>hello</h1>
-              </div>
-            </div>
-        </Html> */}
      </group>
     </Section>
   );
@@ -52,6 +45,8 @@ export default function App() {
       <Canvas
       colorManagement
       camera={{position: [0,0,120], fov: 70}}>
+        <Stars />
+        <OrbitControls />
         <Lights />
         <Suspense fallback={null}>
           <HTMLContent />
